@@ -1,0 +1,161 @@
+﻿@model IEnumerable<ClinicManagementSystem.Models.Doctor>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="~/images/Stone-Clinic-Icon.ico" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+</head>
+<body style="background-image: url('../images/HomePage.jpg')">
+
+    <center>@*<h1 style="font-size:larger;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">The Stone Clinic</h1>*@</center>
+
+    @*<br /><br /><br /><br />*@
+    <center>
+        @*<div class="topnav">
+                <input type="button" value="ADD DOCTOR" onclick="location.href = '@Url.Action("DoctorPage","Home")'" class="btn btn-dark" />
+                <input type="button" value="ADD PATIENT" onclick="location.href = '@Url.Action("PatientPage","Home")'" class="btn btn-dark" />
+                <input type="button" value="VIEW PATIENTS" onclick="location.href = '@Url.Action("ViewPatient","Home")'" class="btn btn-dark" />
+                <input type="button" value="SCHEDULE APPOINTMENT" onclick="location.href = '@Url.Action("ScheduleAppmnt","Home")'" class="btn btn-dark" />
+                <input type="button" value="VIEW APPOINTMENT" onclick="location.href = '@Url.Action("ViewAppmnt","Home")'" class="btn btn-dark" />
+                <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+
+
+
+
+            </div>*@
+
+        @*@using (Html.BeginForm("DoctorPage", "Home", FormMethod.Post))
+            {
+                <input type="submit" value="+Add Doctor" class="btn btn-dark" />
+            }
+            @using (Html.BeginForm("PatientPage", "Home", FormMethod.Post))
+            {
+                <input type="submit" value="+Add Patient" class="btn btn-dark" />
+            }
+            @using (Html.BeginForm("ScheduleAppmnt", "Home", FormMethod.Post))
+            {
+                <input type="submit" value="+Schedule Appointment" class="btn btn-dark" />
+            }
+            @using (Html.BeginForm("ViewAppmnt", "Home", FormMethod.Post))
+            {
+                 <input type="submit" value="Cancel Appoinmnet" class="btn btn-dark" />
+            }*@
+        <div style="background-image: url('../images/2008087.jpg');height:40px;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-left-radius:4px;border-bottom-right-radius:4px">
+            <a href="HomePage"><img src="~/images/Stone-Clinic-Logo.png" style="width:32px;height:32px" /></a>
+            <input type="button" value="ADD DOCTOR" onclick="location.href = '@Url.Action("DoctorPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="ADD PATIENT" onclick="location.href = '@Url.Action("PatientPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW PATIENTS" onclick="location.href = '@Url.Action("ViewPatient","Home")'" class="btn btn-dark" />
+            <input type="button" value="SCHEDULE APPOINTMENT" onclick="location.href = '@Url.Action("ScheduleAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW APPOINTMENT" onclick="location.href = '@Url.Action("ViewAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+
+        </div>
+    </center><br /><br /><center><p style="font-family:'Comic Sans MS'"><b>Please refer the below table to fix appoinments</b></p></center><br /><br /><center><p style="font-family:'Comic Sans MS'"><b>Available Doctors Today</b></p></center><br />
+    @*<table cellspacing="150">
+            @using (Html.BeginForm("DoctorPage", "Home", FormMethod.Post))
+            {
+                <tr>
+
+                    <td><p>To Add the Doctor:</p></td>
+
+                    <td><input type="submit" value="+Add Doctor" class="btn btn-dark" /></td>
+
+
+                </tr>
+            }
+            @using (Html.BeginForm("PatientPage", "Home", FormMethod.Post))
+            {
+                <tr>
+
+
+                    <td><p>To Add the Patient:</p></td>
+                    <td><input type="submit" value="+Add Patient" class="btn btn-dark" /></td>
+
+
+                </tr>
+            }
+            @using (Html.BeginForm("ScheduleAppmnt", "Home", FormMethod.Post))
+            {
+                <tr>
+
+
+                    <td><p>To Fix the Appointment:</p></td>
+                    <td><input type="submit" value="+Schedule Appointment" class="btn btn-dark" /></td>
+
+
+                </tr>
+            }
+            @using (Html.BeginForm("ViewAppmnt", "Home", FormMethod.Post))
+            {
+        <tr>
+
+            <td><p>To Cancel the Appointent:</p></td>
+            <td><input type="submit" value="Cancel Appoinmnet" class="btn btn-dark" /></td>
+
+
+
+
+        </tr>
+            }
+            <tr style="column-span:2">
+            <td>To Log-Out</td>
+            <td><input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" /></td>
+            </tr>
+
+        </table><br /><br /><br />*@
+    <center>
+        @*@using (Html.BeginForm("ScheduleAppmnt", "Home", FormMethod.Post))
+            {*@
+        <table class="table" cellpadding="10" cellspacing="10" style="border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-left-radius: 1px; border-bottom-right-radius: 1px; border:1px; ">
+
+            <tr>
+                <th>@Html.DisplayName("DoctorID")</th>
+                <th>@Html.DisplayName("DoctorName")</th>
+                @*<th>@Html.DisplayName("LastName")</th>*@
+                <th>@Html.DisplayName("Specializations")</th>
+                <th>@Html.DisplayName("VisitingHours")</th>
+                <th>Action</th>
+                <th>To Delete</th>
+            </tr>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.DoctorID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.DoctorName)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelitem => item.LastName)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelitem => item.Specializations)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.VisitingHours)
+                        </td>
+                        <td>
+                            @*<a asp-action="ScheduleAppmnt" asp-route-id="@item.DoctorID">FixApp</a>*@
+                            <input type="submit" value="FixApp" onclick="location.href = '@Url.Action("ScheduleAppmnt", "Home")'" asp-route-id="@item.DoctorName" class="btn btn-outline-dark" />
+                            @*<a asp-action="ScheduleAppmnt" asp-controller="Home" asp-route-id="@item.DoctorName">FixApp</a>*@
+                            @*<input type="submit" value="FixApp" asp-route-id="@item.DoctorName" />*@
+                        </td>
+                        <td>
+                            <a asp-action="DelDoc" asp-controller="Home" asp-route-id="@item.DoctorID">Remove</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        @*}*@
+
+    </center>
+</body>
+</html>

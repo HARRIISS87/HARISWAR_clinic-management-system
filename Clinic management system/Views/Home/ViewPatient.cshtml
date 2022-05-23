@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<ClinicManagementSystem.Models.Patient>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Cancel</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+</head>
+<body style="background-image: url('../images/HomePage.jpg')">
+    @*<img src="~/images/Stone-Clinic-Logo.png" style="width:100px;height:100px" />*@
+    <center>
+        <div style="background-image: url('../images/2008087.jpg');height:40px;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-left-radius:4px;border-bottom-right-radius:4px">
+            <a href="HomePage"><img src="~/images/Stone-Clinic-Logo.png" style="width:32px;height:32px" /></a>
+            <input type="button" value="ADD DOCTOR" onclick="location.href = '@Url.Action("DoctorPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="ADD PATIENT" onclick="location.href = '@Url.Action("PatientPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW PATIENTS" onclick="location.href = '@Url.Action("ViewPatient","Home")'" class="btn btn-dark" />
+            <input type="button" value="SCHEDULE APPOINTMENT" onclick="location.href = '@Url.Action("ScheduleAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW APPOINTMENT" onclick="location.href = '@Url.Action("ViewAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+
+        </div>
+        <hr />
+    </center>
+    <br />
+    <center><h1>Registered Patients</h1> </center>
+    <center><i><h1 style="color:red">!..Warning if you to delete Patients..That Particular patient id must not be scheduled</h1></i></center>
+
+    <table class="table">
+
+        <tr>
+
+            <th>@Html.DisplayName("PatientID")</th>
+            @*<th>@Html.DisplayName("FirstName")</th>*@
+            <th>@Html.DisplayName("PatientName")</th>
+            <th>@Html.DisplayName("Sex")</th>
+            <th>@Html.DisplayName("Age")</th>
+            <th>@Html.DisplayName("DateofBirth")</th>
+
+        </tr>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.PatientID)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelitem => item.FirstName)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelitem => item.PatientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.DateofBirth)
+                    </td>
+                    <td>
+
+                        <a asp-action="DelPatient" asp-route-id="@item.PatientID">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tr>
+            <td>
+                <input type="button" value="Home" onclick="location.href = '@Url.Action("HomePage","Home")'" class="btn btn-primary" />
+            </td>
+            <td>
+                <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

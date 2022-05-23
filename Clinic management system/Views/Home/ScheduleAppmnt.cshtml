@@ -1,0 +1,127 @@
+﻿@model ClinicManagementSystem.Models.Schedules
+
+@{
+    ViewData["Title"] = "ScheduleAppmnt";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Schedules</title>
+    <link rel="icon" type="image/x-icon" href="~/images/Stone-Clinic-Icon.ico" />
+</head>
+<body style="background-image: url('../images/HomePage.jpg')">
+    @*<img src="~/images/Stone-Clinic-Logo.png" style="width:100px;height:100px" />*@
+    <h1>ScheduleAppointment</h1>
+
+    @*<h4>Schedules</h4>*@
+    <center>
+        <div style="background-image: url('../images/2008087.jpg');height:40px;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-left-radius:4px;border-bottom-right-radius:4px">
+            <a href="HomePage"><img src="~/images/Stone-Clinic-Logo.png" style="width:32px;height:32px" /></a>
+            <input type="button" value="ADD DOCTOR" onclick="location.href = '@Url.Action("DoctorPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="ADD PATIENT" onclick="location.href = '@Url.Action("PatientPage","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW PATIENTS" onclick="location.href = '@Url.Action("ViewPatient","Home")'" class="btn btn-dark" />
+            <input type="button" value="SCHEDULE APPOINTMENT" onclick="location.href = '@Url.Action("ScheduleAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="VIEW APPOINTMENT" onclick="location.href = '@Url.Action("ViewAppmnt","Home")'" class="btn btn-dark" />
+            <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+
+        </div>
+    </center>
+    <hr />
+    <div>
+        <center>
+            <div style="background-color:whitesmoke;border-radius:6px">
+                <form asp-action="AddSchd" asp-controller="Home" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="PatientID" class="control-label"></label>
+                        <input asp-for="PatientID" class="form-control text-center" required />
+                        <span asp-validation-for="PatientID" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PatientName" class="control-label"></label>
+                        <input asp-for="PatientName" class="form-control text-center" required />
+                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Specializations" class="control-label"></label><br />
+                        <table>
+                            <tr>
+                                <td>
+                                    @Html.RadioButtonFor(m => m.Specializations, "General")General
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.RadioButtonFor(m => m.Specializations, "Internal_medicine")Internal medicine
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.RadioButtonFor(m => m.Specializations, "Pediatric")Pediatric
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.RadioButtonFor(m => m.Specializations, "Orthopedic")Orthopedic
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.RadioButtonFor(m => m.Specializations, "Opthamology")Opthamology
+                                </td>
+                            </tr>
+                        </table>
+                        @*<select name="Specialization" class="form-control">
+                                <option value="General">General</option>
+                                <option value="Internal Medicine">Internal Medicine</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                            </select>*@
+
+
+                        <span asp-validation-for="Specializations" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DoctorName" class="control-label"></label>
+                        <input asp-for="DoctorName" value="@ViewBag.DoctorName" class="form-control text-center" required />
+                        <span asp-validation-for="DoctorName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VisitDate" class="control-label"></label>
+                        <input asp-for="VisitDate" type="date" id="VisitDate" name="VisitDate" class="form-control text-center" />
+                        <span asp-validation-for="VisitDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AppointmentTime" class="control-label"></label><br />
+                        @Html.RadioButtonFor(m => m.AppointmentTime, "01:00PM-02:00PM")01:00PM-02:00PM<br />
+                        @Html.RadioButtonFor(m => m.AppointmentTime, "02:00PM-03:00PM")02:00PM-03:00PM<br />
+                        @Html.RadioButtonFor(m => m.AppointmentTime, "03:00PM-04:00PM")03:00PM-04:00PM<br />
+                        @Html.RadioButtonFor(m => m.AppointmentTime, "04:00PM-05:00PM")04:00PM-05:00PM<br />
+                        @Html.RadioButtonFor(m => m.AppointmentTime, "06:00PM-07:00PM")06:00PM-07:00PM<br />
+                        <span asp-validation-for="AppointmentTime" class="text-danger"></span><hr />
+                    </div>
+                    <div class="form-group">
+                        @Html.Raw(TempData["msg"])
+                        <input type="submit" value="Add" class="btn btn-dark" />
+                        <input type="button" value="Home" onclick="location.href = '@Url.Action("HomePage","Home")'" class="btn btn-dark" />
+                        <input type="button" value="Log-out" onclick="location.href = '@Url.Action("Index","Home")'" class="btn btn-danger" />
+                    </div>
+                </form>
+            </div>
+        </center>
+    </div>
+
+
+</body>
+</html>
+<script>
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("VisitDate")[0].setAttribute('min', today);
+</script>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
